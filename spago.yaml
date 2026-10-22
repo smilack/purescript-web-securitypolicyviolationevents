@@ -1,0 +1,9 @@
+package:
+  name: web-securitypolicyviolationevents
+  dependencies:
+    - console
+    - effect
+    - prelude
+workspace:
+  packageSet:
+    registry: 81.9.1
