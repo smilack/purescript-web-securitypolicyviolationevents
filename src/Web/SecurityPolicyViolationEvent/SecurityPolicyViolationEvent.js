@@ -30,9 +30,9 @@ export function sample(ev) {
   return ev.sample;
 }
 
-// export function disposition(ev) {
-//
-// }
+export function dispositionImpl(ev) {
+  return ev.disposition;
+}
 
 export function statusCode(ev) {
   return ev.statusCode;

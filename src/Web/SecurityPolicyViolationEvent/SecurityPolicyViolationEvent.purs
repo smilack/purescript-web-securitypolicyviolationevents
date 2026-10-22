@@ -2,9 +2,10 @@
 -- | [Content Security Policy Level 3](https://www.w3.org/TR/CSP3/)
 module Web.SecurityPolicyViolationEvent.SecurityPolicyViolationEvent
   ( SecurityPolicyViolationEvent
+  , SecurityPolicyViolationEventDisposition
   , blockedURI
   , columnNumber
-  -- , disposition
+  , disposition
   , documentURI
   , effectiveDirective
   , fromEvent
@@ -43,7 +44,19 @@ foreign import violatedDirective :: SecurityPolicyViolationEvent -> String
 foreign import originalPolicy :: SecurityPolicyViolationEvent -> String
 foreign import sourceFile :: SecurityPolicyViolationEvent -> String
 foreign import sample :: SecurityPolicyViolationEvent -> String
--- disposition SecurityPolicyViolationEventDisposition
+
+foreign import dispositionImpl
+  :: SecurityPolicyViolationEvent
+  -> String
+
+disposition
+  :: SecurityPolicyViolationEvent
+  -> SecurityPolicyViolationEventDisposition
+disposition e = case dispositionImpl e of
+  "enforce" -> Enforce
+  "report" -> Report
+  _ -> Enforce
+
 foreign import statusCode :: SecurityPolicyViolationEvent -> Int
 foreign import lineNumber :: SecurityPolicyViolationEvent -> Int
 foreign import columnNumber :: SecurityPolicyViolationEvent -> Int
